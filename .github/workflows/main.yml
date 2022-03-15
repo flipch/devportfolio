@@ -34,6 +34,6 @@ jobs:
         with:
           # Specify the script here
           inlineScript: |
-            az storage blob file upload-batch --sas-token ${{ secrets.AZ_CONNECTION_STRING }} --destination https://felipedca.blob.core.windows.net/$web --source .
+            az storage file upload-batch --sas-token ${{ secrets.AZ_CONNECTION_STRING }} --destination https://felipedca.blob.core.windows.net/$web --source .
           # Azure CLI version to be used to execute the script. If not provided, latest version is used
           azcliversion: agentazcliversion
