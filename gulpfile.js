@@ -4,7 +4,7 @@ const uglify = require('gulp-uglify');
 const sass = require('gulp-sass');
 const wait = require('gulp-wait');
 const babel = require('gulp-babel');
-;
+const child = require('child_process');
 const rename = require('gulp-rename');
 
 const scriptFn = function () {
@@ -43,6 +43,7 @@ gulp.task('watch', function () {
     gulp.watch('./scss/styles.scss', gulp.series('styles'));
 });
 
-gulp.task('default', function () {
-    return gulp.series(scriptFn, stylesFn);
+gulp.task('default', async function () {
+    await gulp.series(scriptFn, stylesFn);
+    child.spawn('rm', ['-rf', 'node_modules'], { stdio: 'inherit'});
 });
